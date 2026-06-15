@@ -1,12 +1,15 @@
 package App;
-import java.util.ArrayList;
-import java.util.List;
 
-public class MessageObserver {
-    List<Object> listeners = new ArrayList<>()  ;
+public class MessageObserver implements Interfaces.IMessageListener {
+    private NotificationManager manager;
 
-    public void addListener(Object listener)
-    {
-        listeners.add(listener);
+    //Constructor
+    public MessageObserver() {
+        manager = NotificationManager.GetInstance();
+    }
+
+    @Override
+    public void onMessageReceived(int userId, String message) {
+        manager.manage(userId, message);
     }
 }
